@@ -1,9 +1,7 @@
 name: "🚀 publish"
 on:
-  push:
-    branches:
-          - main
-          - release/*
+  release:
+    types: [created]
 jobs:
   publish-npm:
     name: "🚀 publish"
