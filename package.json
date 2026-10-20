@@ -1,12 +1,16 @@
 {
 	"name": "simple-find-lyrics",
 	"description": "Search for lyrics with artist, song title and source.",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "index.js",
 	"types": "index.d.ts",
+	"bin": {
+		"simple-find-lyrics": "bin/cli.js"
+	},
 	"files": [
 		"index.js",
-		"index.d.ts"
+		"index.d.ts",
+		"bin/cli.js"
 	],
 	"engines": {
 		"node": ">=18"
@@ -29,7 +33,9 @@
 		"search music",
 		"finder lyrics",
 		"search lyrics",
-		"search"
+		"search",
+		"cli",
+		"karaoke"
 	],
 	"author": "ECq Studio's",
 	"license": "MIT",
