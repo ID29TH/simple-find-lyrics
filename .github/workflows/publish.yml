@@ -2,21 +2,29 @@ name: "🚀 publish"
 on:
   release:
     types: [created]
+  # Lets you publish again from the Actions tab without making a new release.
+  workflow_dispatch:
+permissions:
+  contents: read
+  # Needed for npm Trusted Publishing (no token required once it is set up on npmjs.com).
+  id-token: write
 jobs:
   publish-npm:
     name: "🚀 publish"
     runs-on: ubuntu-latest
     steps:
       - name: 📚 checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🟢 node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          # Node 24 ships npm 11, which supports Trusted Publishing.
+          node-version: 24
           registry-url: https://registry.npmjs.org/
       - name: 🧪 test
         run: npm test
       - name: 🚀 publish
         run: npm publish --access public
         env:
+          # Only used when Trusted Publishing is not set up.
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
